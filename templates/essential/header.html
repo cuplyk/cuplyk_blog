@@ -22,19 +22,19 @@
             <div class="collapse navbar-collapse" id="navHeader">
                 <ul class="navbar-nav mx-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="index.html">Home</a>
+                    <a class="nav-link" href="{% url 'home' %}">Home</a>
                 </li>
                 <li class="nav-item @@about">
-                    <a class="nav-link" href="about.html">About</a>
+                    <a class="nav-link" href="{% url 'about' %}">About</a>
                 </li>
                 <li class="nav-item @@elements">
                     <a class="nav-link" href="elements.html">Elements</a>
                 </li>
                 <li class="nav-item @@archive">
-                    <a class="nav-link" href="archive.html">Archive</a>
+                    <a class="nav-link" href="{% url 'archive' %}">Archive</a>
                 </li>
                 <li class="nav-item @@contact">
-                    <a class="nav-link" href="contact.html">Contact</a>
+                    <a class="nav-link" href="{% url 'contact' %}">Contact</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Pages</a>
