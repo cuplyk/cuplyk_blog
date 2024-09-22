@@ -3,6 +3,12 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.utils.text import slugify
 
+
+
+class PageVisit(models.Model):
+    path = models.TextField()
+    timestamp = models.DateTimeField(auto_now_add=True)
+
 class Post(models.Model):
     title = models.CharField(max_length=300, unique=True)
     slug = models.SlugField(max_length=300, unique=True, editable=True)
