@@ -1,26 +1,31 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en-US">
 
 <head>
   <meta charset="utf-8">
-  <title>Qurno - Minimal Blog HTML Template</title>
-
+  <title>{% block title %}Cuplyk{% endblock %}</title>
   <meta name="author" content="Platol">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
   <meta name="description" content="Minimal Blog HTML Template">
 
-  <link rel="shortcut icon" href="assets/images/favicon.png" type="image/x-icon">
+  <link rel="shortcut icon" href="{% static 'images/favicon.png' %}" type="image/x-icon">
 
   <!-- CSS Plugins -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Crete+Round&family=Work+Sans:wght@500;600&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="plugins/bootstrap/bootstrap.min.css">
-  <link rel="stylesheet" href="plugins/tabler-icons/tabler-icons.min.css">
+
+  <link rel="stylesheet" href="{% static 'plugins/bootstrap/bootstrap.min.css' %}">
+  <link rel="stylesheet" href="{% static 'plugins/tabler-icons/tabler-icons.min.css' %}">
+
 
   <!-- Main Stylesheet -->
-  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+  
+  {% block extra_css %}{% endblock %}
 </head>
 <body>
 
@@ -29,18 +34,16 @@
     {% block content %}
 
 
-
-
-
-    {% endblock  %}
-
+    {% endblock %}
 
     <!-- JS Plugins -->
-    <script src="plugins/bootstrap/bootstrap.min.js"></script>
-    <script src="plugins/lightense/lightense.min.js"></script>
+    <script src="{% static 'plugins/bootstrap/bootstrap.min.js' %}"></script>
+    <script src="{% static 'plugins/lightense/lightense.min.js' %}"></script>
 
     <!-- Main Script -->
-    <script src="assets/js/script.js"></script>
+    <script src="{% static 'js/script.js' %}"></script>
+
+    {% block extra_js %}{% endblock %}
 
 </body>
 </html>

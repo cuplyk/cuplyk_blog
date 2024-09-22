@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "django_browser_reload",
+    "blog",
 ]
 
 MIDDLEWARE = [
@@ -64,7 +65,8 @@ ROOT_URLCONF = "hello_world.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [BASE_DIR / "hello_world" / "templates"],
+        #"DIRS": [BASE_DIR / "hello_world" / "templates"],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -130,7 +132,8 @@ STATICFILES_DIRS = [
 ]
 
 STATIC_URL = "static/"
-STATIC_ROOT = BASE_DIR / "hello_world" / "staticfiles"
+#STATIC_ROOT = BASE_DIR / "hello_world" / "staticfiles"
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 MEDIA_URL = "media/"
 MEDIA_ROOT = BASE_DIR / "hello_world" / "media"
