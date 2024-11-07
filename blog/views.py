@@ -4,11 +4,33 @@ from django.views.generic import ListView, DetailView
 from .models import Post, PageVisit
 
 # Create your views here.
-class PostListView(ListView):
+#class PostListView(ListView):
+ #   model = Post
+  #  template_name = 'blog/index.html'
+   # context_object_name = 'posts'
+    #ordering = ['-created_at']
+
+
+class BlogPostListView(ListView):
     model = Post
     template_name = 'blog/index.html'
     context_object_name = 'posts'
     ordering = ['-created_at']
+    paginate_by = 6
+
+class BlogPostDetailView(DetailView):
+    model = Post
+    template_name = 'blog/post_detail.html'
+    context_object_name = 'post'
+    slug_field = 'slug'
+    slug_url_kwarg = 'slug'
+
+
+
+
+
+
+
 
 
 
@@ -33,7 +55,7 @@ def ContactPageView(request):
     return render(request, html_template, context)
 
 def ArchivePageView(request):
-    my_title = "ar page"
+    my_title = "archive page"
     html_template = 'blog/archive.html'
     context = {
         'title': my_title,
