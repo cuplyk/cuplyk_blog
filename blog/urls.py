@@ -7,6 +7,9 @@ urlpatterns = [
  
     path('', BlogPostListView.as_view(), name='post_list'),
     path('post/<slug:slug>/', BlogPostDetailView.as_view(), name='post_detail'),
+    path('post/<slug:slug>/', views.BlogPostDetailView.as_view(), name='post_detail'),
+    #path('tag/<slug:slug>/', views.TagDetailView.as_view(), name='tag_detail'),  # Tag-specific posts
+    #path('author/<int:pk>/', views.AuthorPostsView.as_view(), name='author_posts'),
 
 
     path('about/', views.AboutPageView, name='about'),

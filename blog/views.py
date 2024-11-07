@@ -34,6 +34,8 @@ class BlogPostDetailView(DetailView):
 
 
 
+
+
 def AboutPageView(request):
     my_title = "about page"
     html_template = 'blog/about.html'
