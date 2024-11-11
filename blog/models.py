@@ -14,6 +14,7 @@ class Post(models.Model):
     slug = models.SlugField(max_length=300, unique=True, editable=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='blog_post')
     content = models.TextField()
+    tag = models.ManyToManyField('Tag', related_name='posts', blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
