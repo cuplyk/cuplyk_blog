@@ -1,7 +1,7 @@
 from urllib import request
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView
-from .models import Post, PageVisit
+from .models import Post, PageVisit, Tag
 
 # Create your views here.
 #class PostListView(ListView):
