@@ -31,6 +31,14 @@ class BlogPostDetailView(DetailView):
         return context
 
 
+class AllPostsListView(ListView):
+    model = Post
+    template_name = 'blog/all_posts.html'  # Use a different template if needed
+    context_object_name = 'posts'
+    ordering = ['-created_at']
+
+    # Remove pagination for this view
+    paginate_by = None
 
 
 
