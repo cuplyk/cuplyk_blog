@@ -2,6 +2,8 @@ from urllib import request
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView
 from .models import Post, PageVisit, Tag
+from django.core.paginator import Paginator
+from django.http import JsonResponse
 
 # Create your views here.
 #class PostListView(ListView):
@@ -29,6 +31,38 @@ class BlogPostDetailView(DetailView):
         context = super().get_context_data(**kwargs)
         context['tags'] = self.object.tag.all()  # Add tags to context
         return context
+
+
+
+def load_more_articles(request):
+    page = int(request.GET.get('page', 1))  # Get the page number from the request
+    posts_per_page = 6  # Define how many posts per page
+    posts = Post.objects.all().order_by('-created_at')  # Order posts as needed
+    paginator = Paginator(posts, posts_per_page)
+
+    if page > paginator.num_pages:
+        return JsonResponse({'posts': [], 'has_next': False})
+
+    posts_page = paginator.get_page(page)
+
+    # Serialize the post data
+    posts_data = [
+        {
+            'title': post.title,
+            'slug': post.slug,
+            'author': post.author.username,
+            'created_at': post.created_at.strftime('%d %b, %Y'),
+            'excerpt': post.content[:100],  # Short snippet of the content
+        }
+        for post in posts_page.object_list
+    ]
+
+    return JsonResponse({
+        'posts': posts_data,
+        'has_next': posts_page.has_next(),
+    })
+
+
 
 
 class AllPostsListView(ListView):

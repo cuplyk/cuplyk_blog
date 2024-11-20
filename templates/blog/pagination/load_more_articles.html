@@ -1,0 +1,15 @@
+{% load static %}
+<div id="articles-container">
+    {% for post in posts %}
+      <div class="article">
+        <h3>{{ post.title }}</h3>
+        <p>{{ post.content|truncatewords:30 }}</p>
+        <small>By {{ post.author }} on {{ post.created_at|date:"d M, Y" }}</small>
+      </div>
+    {% endfor %}
+  </div>
+  
+  <div id="load-more-container" class="text-center mt-5">
+    <button id="load-more" class="btn btn-primary" data-page="2">More Articles</button>
+  </div>
+  

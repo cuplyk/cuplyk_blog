@@ -18,9 +18,9 @@
         </h2>
       </div>
     </div>
-    <div class="row gy-5 gx-4 g-xl-5">
+    <div class="row gy-5 gx-4 g-xl-5" id="articles-container">
       {% for post in posts %}
-      <div class="col-lg-6">
+      <div class="col-lg-6 article">
         <article class="card post-card h-100 border-0 bg-transparent">
           <div class="card-body">
             <a class="d-block" href="{% url 'post_detail' post.slug %}" title="{{ post.title }}">
@@ -58,7 +58,7 @@
                   <li class="list-inline-item small">
                     <a href="">{{ tag.name }}</a>
                   </li>
-                {% endfor %}
+                  {% endfor %}
                 </ul>
               </li>
             </ul>
@@ -72,10 +72,10 @@
       {% endfor %}
     </div>
     
-    <!-- View all posts button, outside the for loop -->
+    <!-- Load more articles button -->
     <div class="row">
       <div class="col-12 text-center">
-        <a class="btn btn-primary mt-5" href="blog.html" aria-label="View all posts"><i class="ti ti-new-section me-2"></i>View all posts</a>
+        <button id="load-more" class="btn btn-primary mt-5" data-page="2">More Articles</button>
       </div>
     </div>
 
