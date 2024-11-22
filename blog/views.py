@@ -4,6 +4,8 @@ from django.views.generic import ListView, DetailView
 from .models import Post, PageVisit, Tag
 from django.core.paginator import Paginator
 from django.http import JsonResponse
+from django.db.models import Q
+
 
 # Create your views here.
 #class PostListView(ListView):
@@ -31,6 +33,16 @@ class BlogPostDetailView(DetailView):
         context = super().get_context_data(**kwargs)
         context['tags'] = self.object.tag.all()  # Add tags to context
         return context
+    
+class AllPostsListView(ListView):
+    model = Post
+    template_name = 'blog/all_posts.html'  # Use a different template if needed
+    context_object_name = 'posts'
+    ordering = ['-created_at']
+
+    # Remove pagination for this view
+    paginate_by = None
+
 
 
 
@@ -64,15 +76,16 @@ def load_more_articles(request):
 
 
 
+def search_posts(request):
+    query = request.GET.get('q', '')
+    results = Post.objects.filter(
+        Q(title__icontains=query) |
+        Q(content__icontains=query) |
+        Q(tag__name__icontains=query)
+    ).distinct() if query else Post.objects.none()
 
-class AllPostsListView(ListView):
-    model = Post
-    template_name = 'blog/all_posts.html'  # Use a different template if needed
-    context_object_name = 'posts'
-    ordering = ['-created_at']
+    return render(request, 'blog/search_results.html', {'results': results, 'query': query})
 
-    # Remove pagination for this view
-    paginate_by = None
 
 
 
