@@ -11,7 +11,8 @@ urlpatterns = [
     path('blog/all/', AllPostsListView.as_view(), name='all_posts'),
 
     path('search/', views.search_posts, name='search_posts'),
-
+    
+    # load articles
     path('load-more-articles/', load_more_articles, name='load_more_articles'),
 
     #path('author/<int:pk>/', views.AuthorPostsView.as_view(), name='author_posts'),
