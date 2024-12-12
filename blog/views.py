@@ -76,17 +76,26 @@ def load_more_articles(request):
 
 
 
+from django.shortcuts import render
+from django.db.models import Q
+
 def search_posts(request):
-    query = request.GET.get('q', '')
-    results = Post.objects.filter(
-        Q(title__icontains=query) |
-        Q(content__icontains=query) |
-        Q(tag__name__icontains=query)
-    ).distinct() if query else Post.objects.none()
+    query = request.GET.get('q', '').strip()
+    results = Post.objects.none()
+
+    if query:
+        if query.startswith('#'):
+            # Tag-based search
+            tag = query[1:]  # Remove the '#' character
+            results = Post.objects.filter(tag__name__icontains=tag).distinct()
+        else:
+            # General text search
+            results = Post.objects.filter(
+                Q(title__icontains=query) |
+                Q(content__icontains=query)
+            ).distinct()
 
     return render(request, 'blog/search_results.html', {'results': results, 'query': query})
-
-
 
 
 
