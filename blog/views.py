@@ -76,8 +76,7 @@ def load_more_articles(request):
 
 
 
-from django.shortcuts import render
-from django.db.models import Q
+
 
 def search_posts(request):
     query = request.GET.get('q', '').strip()
