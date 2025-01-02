@@ -40,33 +40,13 @@
                     <img class="w-100 h-auto rounded" src="{{ post.image.url }}" alt="{{ post.title }}" width="970" height="500">
                 </div>
             </div>
-    
-            <div class="col-lg-2 post-share-block order-1 order-lg-0 mt-5 mt-lg-0">
-              <div class="position-sticky" style="top:150px">
-                <span class="d-inline-block mb-3 small">SHARE</span>
-                <ul class="social-share icon-box">
-                  <li class="d-inline-block d-lg-block me-2 mb-2" onclick="return tbs_click()"><i class="ti ti-brand-twitter"></i></li>
-                  <li class="d-inline-block d-lg-block me-2 mb-2" onclick="return fbs_click()"><i class="ti ti-brand-facebook"></i></li>
-                  <li class="d-inline-block d-lg-block me-2 mb-2" onclick="return ins_click()"><i class="ti ti-brand-linkedin"></i></li>
-                  <li class="d-inline-block d-lg-block me-2 mb-2" onclick="return red_click()"><i class="ti ti-brand-reddit"></i></li>
-                  <li class="d-inline-block d-lg-block me-2 mb-2" onclick="return pin_click()"><i class="ti ti-brand-pinterest"></i></li>
-                </ul>
-              </div>
-              <script type="text/javascript">
-                var pageLink = window.location.href;
-                var pageTitle = String(document.title).replace(/\&/g, '%26');
-                function tbs_click(){pageLink = 'https://x.com/?mx=2/intent/tweet?text=${pageTitle}&url=${pageLink}';socialWindow(pageLink, 570, 570);}
-                function fbs_click(){pageLink = 'https://www.facebook.com/sharer.php?u=${pageLink}&quote=${pageTitle}';socialWindow(pageLink, 570, 570);}
-                function ins_click(){pageLink = 'https://www.linkedin.com/sharing/share-offsite/?url=${pageLink}';socialWindow(pageLink, 570, 570);}
-                function red_click(){pageLink = 'https://www.reddit.com/submit?url=${pageLink}';socialWindow(pageLink, 570, 570);}
-                function pin_click(){pageLink = 'https://www.pinterest.com/pin/create/button/?&text=${pageTitle}&url=${pageLink}&description=${pageTitle}';socialWindow(pageLink, 570, 570);}
-                function socialWindow(pageLink, width, height){var left = (screen.width - width) / 2;var top = (screen.height - height) / 2;var params = "menubar=no,toolbar=no,status=no,width=" + width + ",height=" + height + ",top=" + top + ",left=" + left;window.open(pageLink,"",params);}
-              </script>
-          </div>
+            
+            {% include "essential/includes/share_post.html" %}
+
     
             <div class="col-lg-8 post-content-block order-0 order-lg-2">
             <div class="content">
-                {{ post.content | safe }}
+                {{ post.content | linebreaks }}
             </div>
     
             <ul class="post-meta-tag list-unstyled list-inline mt-5">
@@ -95,30 +75,8 @@
         </div>
       </div>
   
-      <!-- Disqus Comments -->
-      <div class="disqus-comment">
-        <div class="row">
-          <div class="col-lg-10 mx-auto">
-            <div class="block"><div id="disqus_thread"></div>
-              <script type="application/javascript">
-                var disqus_config = function () {};
-                (function() {
-                  if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
-                    document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
-                    return;
-                  }
-                  var d = document, s = d.createElement('script'); s.async = true;
-                  s.src = '//' + "platol" + '.disqus.com/embed.js';
-                  s.setAttribute('data-timestamp', +new Date());
-                  (d.head || d.body).appendChild(s);
-                })();
-              </script>
-              <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-              <a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-            </div>
-          </div>
-        </div>
-      </div>
+      {% include "essential/includes/comments.html" %}
+
     </div>
 </section>
 
