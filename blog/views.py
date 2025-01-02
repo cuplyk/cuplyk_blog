@@ -100,8 +100,6 @@ def search_posts(request):
 
 
 
-
-
 def AboutPageView(request):
     my_title = "about page"
     html_template = 'blog/about.html'

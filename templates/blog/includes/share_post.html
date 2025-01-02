@@ -1,0 +1,23 @@
+{% load static %}
+<div class="col-lg-2 post-share-block order-1 order-lg-0 mt-5 mt-lg-0">
+    <div class="position-sticky" style="top:150px">
+      <span class="d-inline-block mb-3 small">SHARE</span>
+      <ul class="social-share icon-box">
+        <li class="d-inline-block d-lg-block me-2 mb-2" onclick="return tbs_click()"><i class="ti ti-brand-twitter"></i></li>
+        <li class="d-inline-block d-lg-block me-2 mb-2" onclick="return fbs_click()"><i class="ti ti-brand-facebook"></i></li>
+        <li class="d-inline-block d-lg-block me-2 mb-2" onclick="return ins_click()"><i class="ti ti-brand-linkedin"></i></li>
+        <li class="d-inline-block d-lg-block me-2 mb-2" onclick="return red_click()"><i class="ti ti-brand-reddit"></i></li>
+        <li class="d-inline-block d-lg-block me-2 mb-2" onclick="return pin_click()"><i class="ti ti-brand-pinterest"></i></li>
+      </ul>
+    </div>
+    <script type="text/javascript">
+      var pageLink = window.location.href;
+      var pageTitle = String(document.title).replace(/\&/g, '%26');
+      function tbs_click(){pageLink = 'https://twitter.com/intent/tweet?text=${pageTitle}&url=${pageLink}';socialWindow(pageLink, 570, 570);}
+      function fbs_click(){pageLink = 'https://www.facebook.com/sharer.php?u=${pageLink}&quote=${pageTitle}';socialWindow(pageLink, 570, 570);}
+      function ins_click(){pageLink = 'https://www.linkedin.com/sharing/share-offsite/?url=${pageLink}';socialWindow(pageLink, 570, 570);}
+      function red_click(){pageLink = 'https://www.reddit.com/submit?url=${pageLink}';socialWindow(pageLink, 570, 570);}
+      function pin_click(){pageLink = 'https://www.pinterest.com/pin/create/button/?&text=${pageTitle}&url=${pageLink}&description=${pageTitle}';socialWindow(pageLink, 570, 570);}
+      function socialWindow(pageLink, width, height){var left = (screen.width - width) / 2;var top = (screen.height - height) / 2;var params = "menubar=no,toolbar=no,status=no,width=" + width + ",height=" + height + ",top=" + top + ",left=" + left;window.open(pageLink,"",params);}
+    </script>
+</div>
